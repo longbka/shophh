@@ -1,0 +1,52 @@
+{
+  "kind": "collectionType",
+  "collectionName": "orders",
+  "info": {
+    "singularName": "order",
+    "pluralName": "orders",
+    "displayName": "Order",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "orders"
+    },
+    "estimated_delivery_date": {
+      "type": "datetime"
+    },
+    "total_money": {
+      "type": "integer"
+    },
+    "delivery_date": {
+      "type": "datetime"
+    },
+    "payment": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::payment.payment",
+      "inversedBy": "orders"
+    },
+    "orderCode": {
+      "type": "string"
+    },
+    "order_details": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::order-detail.order-detail",
+      "mappedBy": "order"
+    },
+    "order_status": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::order-status.order-status",
+      "inversedBy": "orders"
+    }
+  }
+}
